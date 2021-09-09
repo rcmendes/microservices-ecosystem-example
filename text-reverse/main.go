@@ -6,10 +6,17 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+type EchoMessage struct {
+	Message string `json:"message"`
+}
+
 func main() {
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
+	e.GET("/:message", func(c echo.Context) error {
+		message := &EchoMessage{
+			Message: c.Param("message"),
+		}
+		return c.JSON(http.StatusOK, message)
 	})
 	e.Logger.Fatal(e.Start(":9000"))
 }
