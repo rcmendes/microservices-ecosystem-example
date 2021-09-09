@@ -1,0 +1,14 @@
+version: "3"
+services:
+  echo:
+    build: 
+      context: ./echo
+      dockerfile: src/main/docker/Dockerfile.jvm
+    image: rcmendes/echo-service:latest
+    ports: 
+      - "8080:8080"
+  text-reverse:
+    build: ./text-reverse
+    image: rcmendes/text-reverse-service:latest
+    ports: 
+      - "9000:9000"
