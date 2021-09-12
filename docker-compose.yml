@@ -6,6 +6,16 @@ services:
       - ./nginx:/etc/nginx/conf.d
     ports:
       - "80:80"
+  authentication:
+    build: ./authentication-service
+    image: rcmendes/authentication-service:latest
+    ports: 
+      - "9001:9001"
+  reverse:
+    build: ./reverse-text
+    image: rcmendes/reverse-text-service:latest
+    ports: 
+      - "9000:9000"
   echo:
     build: 
       context: ./echo
@@ -13,8 +23,3 @@ services:
     image: rcmendes/echo-service:latest
     ports: 
       - "8080:8080"
-  reverse:
-    build: ./text-reverse
-    image: rcmendes/text-reverse-service:latest
-    ports: 
-      - "9000:9000"

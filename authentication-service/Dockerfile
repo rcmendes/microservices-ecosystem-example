@@ -18,6 +18,6 @@ WORKDIR /root/
 
 COPY --from=base /build/app ./
 
-EXPOSE 9000
+EXPOSE 9001
 
 CMD ["./app"]
